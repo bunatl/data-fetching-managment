@@ -1,0 +1,26 @@
+@mixin flex($direction, $wrap, $justify){
+    display: flex;
+    flex-direction: $direction;
+    flex-wrap: $wrap;
+    justify-content: $justify;
+}
+
+h1{
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+.control{
+    @include flex(row, wrap, center);
+    column-gap: 3em;
+
+    margin-bottom: 4em;
+}
+
+.data{
+    @include flex(row, wrap, space-around);
+
+    >div{
+        text-align: center;
+    }
+}
