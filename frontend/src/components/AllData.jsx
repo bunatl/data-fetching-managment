@@ -15,6 +15,7 @@ function AllData () {
 
     return (
         <div>
+            <h2>All fetched Data</h2>
             <Content data={ fetchedData } />
         </div>
     );

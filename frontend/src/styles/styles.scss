@@ -20,7 +20,7 @@ h1{
 .data{
     @include flex(row, wrap, space-around);
 
-    >div{
+    .objMemSize{
         text-align: center;
     }
 }

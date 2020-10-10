@@ -10,6 +10,7 @@ function GraphQL () {
 
     return (
         <div>
+            <h2>GraphQL version</h2>
             <Content data={ fetchedData } />
         </div>
     );
