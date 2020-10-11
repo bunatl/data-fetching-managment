@@ -2,10 +2,11 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const helmet = require('helmet');
+const { graphqlHTTP } = require('express-graphql');
 require('dotenv').config();
 
 const Fetch = require('./api/Fetch');
-const GraphQL = require('./api/GraphQL');
+const schemaGraphQL = require('./model/GraphQL');
 
 const app = express();
 
@@ -14,10 +15,11 @@ const app = express();
     Removes X-Powered-by: Express header
     Add/mask other header properties 
 */
-app.use(helmet());
+// app.use(helmet());
+app.use(helmet({ contentSecurityPolicy: (process.env.NODE_ENV === 'production') ? undefined : false }));
 app.use(morgan('dev'));
 
-// CORS policy
+// CORS policy;
 app.use(cors({
     //only frontend can access backend
     origin: process.env.CORS_ORIGIN
@@ -28,7 +30,10 @@ app.use(express.json());
 
 /* == Routing == */
 app.use('/fetch', Fetch);
-app.use('/graphql', GraphQL);
+app.use('/graphql', graphqlHTTP({
+    schema: schemaGraphQL,
+    graphiql: true
+}));
 
 /* == Listen == */
 console.log(process.env.PORT);
