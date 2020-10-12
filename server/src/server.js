@@ -15,7 +15,7 @@ const app = express();
     Removes X-Powered-by: Express header
     Add/mask other header properties 
 */
-// app.use(helmet());
+// CPS needs to be set in order to prevent loading playground stuck window: https://github.com/graphql/graphql-playground/issues/1283
 app.use(helmet({ contentSecurityPolicy: (process.env.NODE_ENV === 'production') ? undefined : false }));
 app.use(morgan('dev'));
 
