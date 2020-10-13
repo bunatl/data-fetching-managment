@@ -6,7 +6,7 @@ const { graphqlHTTP } = require('express-graphql');
 require('dotenv').config();
 
 const Fetch = require('./api/Fetch');
-const schemaGraphQL = require('./model/GraphQL');
+const graphQLCustomScheme = require('./model/GraphQL');
 
 const app = express();
 
@@ -31,7 +31,7 @@ app.use(express.json());
 /* == Routing == */
 app.use('/fetch', Fetch);
 app.use('/graphql', graphqlHTTP({
-    schema: schemaGraphQL,
+    schema: graphQLCustomScheme,
     graphiql: true
 }));
 
