@@ -6,7 +6,6 @@ const {
   GraphQLNonNull,
   GraphQLList
 } = require('graphql');
-const { company } = require('../staticDB/db');
 
 const staticDB = require('../staticDB/db');
 
@@ -28,7 +27,23 @@ const DepartmentType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLNonNull(GraphQLInt) },
     name: { type: GraphQLNonNull(GraphQLString) },
-    employees: { type: GraphQLList(GraphQLNonNull(EmployeeType)) }
+    employees: { type: GraphQLList(GraphQLNonNull(GraphQLInt)) },
+    employee: {
+      type: GraphQLList(EmployeeType),
+      description: 'Custum propery for mapping employees to list of employees in a department',
+      resolve: department => {
+        let res = [];
+        // iterate through the list of departments in a company
+        department.employees.forEach(employeeID => {
+          // if ID matches with department in the list of all departments - add it to the result array
+          staticDB.employees.find(x => {
+            x.id === employeeID ? res.push(x) : '';
+            return x.id === employeeID;
+          });
+        });
+        return res;
+      }
+    }
   })
 });
 
@@ -40,7 +55,8 @@ const CompanyType = new GraphQLObjectType({
     departments: { type: GraphQLList(GraphQLNonNull(GraphQLInt)) },
     department: {
       type: GraphQLList(DepartmentType),
-      resolve: company => { //staticDB.departments[ 1 ]//staticDB.departments.find(department => department.id === 1)
+      description: 'Custum propery for mapping departments to list of department in a company',
+      resolve: company => {
         let res = [];
         // iterate through the list of departments in a company
         company.departments.forEach(departmentID => {
@@ -49,15 +65,12 @@ const CompanyType = new GraphQLObjectType({
             x.id === departmentID ? res.push(x) : '';
             return x.id === departmentID;
           });
-
         });
         return res;
       }
     }
   })
 });
-
-
 
 // root queries
 const RootQueryType = new GraphQLObjectType({
@@ -69,6 +82,14 @@ const RootQueryType = new GraphQLObjectType({
       type: new GraphQLList(CompanyType),
       description: 'Return the company',
       resolve: () => staticDB.company
+    },
+    employee: {
+      type: EmployeeType,
+      description: 'Return a single employee by id',
+      args: {
+        id: { type: GraphQLInt }
+      },
+      resolve: (parent, args) => staticDB.employees.find(x => x.id === args.id)
     }
   })
 });
