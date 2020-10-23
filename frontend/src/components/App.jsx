@@ -1,11 +1,11 @@
 import React from 'react';
 
 // component imports
-import AllData from './AllData';
-import Selector from './Selector';
+import { AllData } from './AllData';
+import { Selector } from './Selector';
 
-import Fetch from './Fetch';
-import GraphQL from './GraphQL';
+import { Fetch } from './Fetch';
+import { GraphQL } from './GraphQL';
 
 import '../styles/styles.scss';
 

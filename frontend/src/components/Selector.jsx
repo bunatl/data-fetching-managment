@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-function Selector () {
+export const Selector = () => {
     return (
         <div className='selector'>
             <select>
@@ -9,6 +9,4 @@ function Selector () {
             </select>
         </div>
     );
-}
-
-export default Selector;
+};

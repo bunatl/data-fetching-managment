@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react';
 
-import Content from './Content';
+import { Content } from './Content';
 
-function AllData () {
+export function AllData () {
     const [ fetchedData, setFetchedData ] = useState("fetch");
 
     useEffect(() => {
-        fetch(`${ process.env.REACT_APP_FETCH_URI }/fetch`)
-            .then(res => res.json())
-            .then((result) => {
-                setFetchedData(result);
-            }, (error) => console.error(error));
+        const fetchData = async () => {
+            try {
+                const result = await fetch(`${ process.env.REACT_APP_FETCH_URI }/fetch`);
+                const resultJSON = await result.json();
+                setFetchedData(resultJSON.text);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchData();
     }, []);
 
     return (
@@ -20,5 +25,3 @@ function AllData () {
         </div>
     );
 }
-
-export default AllData;

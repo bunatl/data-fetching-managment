@@ -14,7 +14,6 @@ const {
 } = require('./Types');
 const staticDB = require('../staticDB/db');
 
-
 // root queries
 const RootQueryType = new GraphQLObjectType({
   name: 'Query',
@@ -74,7 +73,6 @@ const RootMutationType = new GraphQLObjectType({
     }
   })
 });
-
 
 // scheme
 const schema = new GraphQLSchema({
