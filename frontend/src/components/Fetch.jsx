@@ -1,22 +1,17 @@
-import React, { useState, useEffect } from 'react';
-
+import React, { useState, useEffect, useContext } from 'react';
 import { Content } from './Content';
+
+import { fetchData } from '../utils/fetchDB';
+import { SelectContext } from './App';
 
 export const Fetch = () => {
     const [ fetchedData, setFetchedData ] = useState('');
+    const { selectValue } = useContext(SelectContext);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const res = await fetch(`${ process.env.REACT_APP_FETCH_URI }/fetch`);
-                const resultJSON = await res.json();
-                setFetchedData(resultJSON.text);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-        fetchData();
-    }, []);
+        const loadData = async () => setFetchedData(await fetchData(selectValue));
+        loadData();
+    }, [ selectValue ]);
 
     return (
         <div>

@@ -13,7 +13,7 @@ const departments = [
 
 const company = [ {
     name: 'DreamCompany',
-    departments: [ 1, 2 ],
+    departments: [ 1, 2 ]
 } ];
 
 module.exports = {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext, useMemo } from 'react';
 
 // component imports
 import { AllData } from './AllData';
@@ -8,21 +8,26 @@ import { Fetch } from './Fetch';
 import { GraphQL } from './GraphQL';
 
 import '../styles/styles.scss';
+import { useState } from 'react';
 
-function App () {
+export const SelectContext = createContext('');
+export const App = () => {
+  const [ selectValue, setSelectValue ] = useState('Whole DB');
+  const providerValue = useMemo(() => ({ selectValue, setSelectValue }), [ selectValue ]);
+
   return (
-    <div className="App">
-      <h1>Data fetching managment</h1>
-      <div className='control'>
-        <AllData />
-        <Selector />
+    <SelectContext.Provider value={ providerValue }>
+      <div className="App">
+        <h1>Data fetching managment</h1>
+        <div className='data'>
+          <Fetch />
+          <GraphQL />
+        </div>
+        <div className='control'>
+          <AllData />
+          <Selector />
+        </div>
       </div>
-      <div className='data'>
-        <Fetch />
-        <GraphQL />
-      </div>
-    </div>
+    </SelectContext.Provider>
   );
-}
-
-export default App;
+};
