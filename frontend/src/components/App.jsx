@@ -24,13 +24,13 @@ export const App = () => {
       <SelectContext.Provider value={ providerValue }>
         <div className="App">
           <h1>Data fetching managment</h1>
+          {/* <div className='control'> */ }
+          <Selector />
+          {/* </div> */ }
           <div className='data'>
+            <AllData />
             <Fetch />
             <GraphQL />
-          </div>
-          <div className='control'>
-            <AllData />
-            <Selector />
           </div>
         </div>
       </SelectContext.Provider>

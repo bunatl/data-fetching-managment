@@ -5,7 +5,7 @@ import { fetchData } from '../utils/fetchDB';
 import { SelectContext } from './App';
 
 export const Fetch = () => {
-    const [ fetchedData, setFetchedData ] = useState('');
+    const [ fetchedData, setFetchedData ] = useState({});
     const { selectValue } = useContext(SelectContext);
 
     useEffect(() => {
@@ -16,7 +16,7 @@ export const Fetch = () => {
     return (
         <div>
             <h2>Fetch version</h2>
-            <Content data={ fetchedData } />
+            <Content fetchedObj={ fetchedData } />
         </div>
     );
 };

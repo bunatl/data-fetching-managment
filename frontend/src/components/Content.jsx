@@ -1,11 +1,12 @@
 import React from 'react';
-import { memorySizeOf } from '../utils/memorySizeOfObject';
+import { formatByteSize } from '../utils/memorySizeOfObject';
 
-export const Content = ({ data }) => {
+export const Content = ({ fetchedObj }) => {
     return (
         <div className='content'>
-            <div className='objMemSize'>Size transfered: { memorySizeOf(data) }</div>
-            <div><pre>{ JSON.stringify(data, null, 2) }</pre></div>
+            <div className='size'>Size transfered: <span>{ formatByteSize(fetchedObj.bytes) }</span></div>
+            <div className='fetches'>Number of fecthes: <span>{ fetchedObj.fetches }</span></div>
+            <div><pre>{ JSON.stringify(fetchedObj.data, null, 2) }</pre></div>
         </div>
     );
 };

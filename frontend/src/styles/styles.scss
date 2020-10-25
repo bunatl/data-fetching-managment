@@ -10,17 +10,40 @@ h1{
     margin-bottom: 2em;
 }
 
-.control{
-    @include flex(row, wrap, center);
-    column-gap: 3em;
-
-    margin-bottom: 4em;
-}
-
 .data{
     @include flex(row, wrap, space-around);
-
-    .objMemSize{
+    
+    .size, .fetches{
         text-align: center;
+        font-weight: bold;
+        font-size: 1.05em;
+        font-style: italic;
+
+        >span{
+            font-style: normal;
+            font-size: 1.15em;
+        }
+    }
+}
+
+.selector{
+    @include flex(row, wrap, space-around);
+
+    >div{
+        height: 1.5em;
+        background: lightgray;
+        border: 2px solid gray;
+        border-radius: .5em;
+        font-weight: bold;
+        padding: 1em;
+        line-height: 1.5em;
+        margin-bottom: 1em;
+
+        &:hover{
+            background: gray;
+            border: 2px solid lightgrey;
+            color: white;
+            cursor: pointer;
+        }
     }
 }

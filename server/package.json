@@ -1,11 +1,11 @@
 {
   "name": "data-fetching-backend",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "",
-  "main": "src/server.js",
+  "main": "src/fetches-static-db.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/server"
+    "dev": "nodemon src/fetches-static-db"
   },
   "author": "Lukas Bunat",
   "license": "MIT",
