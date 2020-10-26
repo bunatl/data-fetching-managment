@@ -16,7 +16,7 @@ export const Fetch = () => {
     return (
         <div>
             <h2>Fetch version</h2>
-            <Content fetchedObj={ fetchedData } />
+            <Content fetchedObj={ fetchedData === undefined ? {} : fetchedData } />
         </div>
     );
 };

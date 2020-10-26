@@ -35,6 +35,15 @@ app.use('/graphql', graphqlHTTP({
     graphiql: true
 }));
 
+// === IMPORTANT NOTE ==== 
+/*
+Node must mu at least v10
+in order to gave URLSearchPArams as global
+https://gitmemory.com/issue/graphql/express-graphql/685/671872282
+
+Update node: https://github.com/nodesource/distributions/blob/master/README.md
+*/
+
 /* == Listen == */
 const port = process.env.PORT || 5000;
 app.listen(port, () => {

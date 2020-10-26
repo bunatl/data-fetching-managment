@@ -1,6 +1,6 @@
 import React, { createContext, useMemo, useState } from 'react';
-import ApolloClient from 'apollo-boost';
-import { ApolloProvider } from 'react-apollo';
+import { ApolloClient, InMemoryCache } from '@apollo/client';
+import { ApolloProvider } from '@apollo/client';
 
 // component imports
 import { AllData } from './AllData';
@@ -9,9 +9,9 @@ import { Fetch } from './Fetch';
 import { GraphQL } from './GraphQL';
 
 import '../styles/styles.scss';
-
 const client = new ApolloClient({
-  uri: `${ process.env.REACT_APP_FETCH_URI }/graphql`
+  uri: process.env.REACT_APP_GRAPHQL_URI,
+  cache: new InMemoryCache()
 });
 
 export const SelectContext = createContext('');

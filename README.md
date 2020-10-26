@@ -6,5 +6,8 @@ Demo project showing difference between fetching data via `fetch` and `graphql` 
 ## Live demo
 Online live demo is available on [www.fetch-vs-graphql.techis.fun](https://fetch-vs-graphql.techis.fun) hosted on my own private VPS.
 
+## Requirements
+- Node.js > v10 (tested on 12.9)
+
 ## License
 MIT

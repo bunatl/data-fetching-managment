@@ -1,6 +1,7 @@
-import { gql } from 'apollo-boost';
+import { gql } from '@apollo/client';
 
-export const wholeDB = gql`{
+export const wholeDB = gql`
+query getWholeDB {
   company {
     name
     department {
@@ -15,7 +16,8 @@ export const wholeDB = gql`{
   }
 }`;
 
-export const companyDepartments = gql`{
+export const companyDepartments = gql`
+query companyDepartments {
   company {
     name
     department {

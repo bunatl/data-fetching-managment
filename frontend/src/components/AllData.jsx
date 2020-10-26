@@ -14,7 +14,7 @@ export function AllData () {
     return (
         <div>
             <h2>Data in DB</h2>
-            <Content fetchedObj={ fetchedData } />
+            <Content fetchedObj={ fetchedData === undefined ? {} : fetchedData } />
         </div>
     );
 }

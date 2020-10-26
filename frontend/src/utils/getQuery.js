@@ -9,6 +9,7 @@ import {
 } from './graphQLQueries';
 
 export const getQuery = (selectValue) => {
+    console.log(selectValue);
     switch (selectValue) {
         case 'Whole DB':
             return wholeDB;
